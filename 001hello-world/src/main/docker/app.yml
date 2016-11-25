@@ -1,0 +1,16 @@
+version: '2'
+services:
+    jhipster_hello-app:
+        image: jhipster_hello
+        external_links:
+            - jhipster_hello-mysql:mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/jhipster_hello?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    jhipster_hello-mysql:
+        extends:
+            file: mysql.yml
+            service: jhipster_hello-mysql
